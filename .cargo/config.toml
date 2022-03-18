@@ -1,0 +1,31 @@
+# [target.x86_64-unknown-linux-gnu]
+# rustflags = ["-Ctarget-cpu=cascadelake"]
+
+# 查看具体cpu型号
+# rustc --target=x86_64-unknown-linux-gnu --print target-cpus  // currently cascadelake
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["-Ctarget-cpu=native","-Ctarget-feature=+avx2,+sse4.2"]
+
+[target.x86_64-apple-darwin]
+rustflags = ["-Ctarget-cpu=native","-Ctarget-feature=+avx2,+sse4.2"]
+
+
+# 通常情况下不需要输出ASM，除非需要查看输出ASM CODE
+# rustflags = ["-Ctarget-cpu=cascadelake","-Ctarget-feature=+avx2,+sse4.2","--emit=asm"]
+
+[build]
+incremental = false
+
+
+[source.crates-io]
+replace-with = 'rsproxy'
+
+[source.rsproxy]
+registry = "https://rsproxy.cn/crates.io-index"
+
+[registries.rsproxy]
+index = "https://rsproxy.cn/crates.io-index"
+
+[net]
+git-fetch-with-cli = true
+

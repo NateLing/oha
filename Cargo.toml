@@ -13,36 +13,48 @@ license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "3.0.0", features = ["derive"] }
-tokio = { version = "1.14.0", features = ["full"] }
-anyhow = "1.0.38"
-thiserror = "1.0.16"
-futures = "0.3.12"
-average = "0.13.0"
-float-ord = "0.3.1"
-byte-unit = "4.0.8"
-tui = { version = "0.16.0", default-features = false, features = ["crossterm"] }
-crossterm = "0.21.0"
-libc = "0.2.67"
+clap = { version = "3.1.6", features = ["derive"] }
+tokio = { version = "1.17.0", features = ["full"] }
+anyhow = "1.0.56"
+thiserror = "1.0.30"
+futures = "0.3.21"
+average = "0.13.1"
+float-ord = "0.3.2"
+byte-unit = "4.0.14"
+tui = { version = "0.17.0", default-features = false, features = ["crossterm"] }
+crossterm = "0.23.1"
+libc = "0.2.119"
 flume = "0.10"
-humantime = "2.0.0"
+humantime = "2.1.0"
 
-hyper = { version = "0.14.13", features = ["full"] }
+hyper = { version = "0.14.17", features = ["full"] }
 http = "0.2"
-native-tls = "0.2.4"
+native-tls = "0.2.8"
 tokio-native-tls = "0.3.0"
 rand = "0.8"
-trust-dns-resolver = "0.20.3"
-base64 = "0.13.0"
+trust-dns-resolver = "0.21.1"
+base64 = "0.13"
 lazy_static = "1.4.0"
 
 [target.'cfg(unix)'.dependencies]
-rlimit = "0.6.2"
+rlimit = "0.7.0"
 
 [dev-dependencies]
-assert_cmd = "2.0.2"
+assert_cmd = "2.0.4"
 warp = "0.3"
 get-port = "4.0.0"
 lazy_static = "1.4.0"
-bytes = "1.0"
+bytes = "1.1"
 http = "0.2"
+
+
+[profile.release]
+opt-level = 3
+debug = false
+debug-assertions = false
+overflow-checks =false
+lto = "fat"
+incremental = false
+codegen-units = 1
+panic = "abort"
+rpath = false
