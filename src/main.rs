@@ -143,7 +143,7 @@ impl FromStr for ConnectToEntry {
   }
 }
 
-#[tokio::main]
+#[tokio::main(flavor = "multi_thread", worker_threads = 8)]
 async fn main() -> anyhow::Result<()> {
   let mut opts: Opts = Opts::parse();
 
